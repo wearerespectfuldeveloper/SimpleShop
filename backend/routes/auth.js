@@ -29,4 +29,31 @@ router.post('/signup', async (req, res, next) => {
     res.json(user.id);
 });
 
+router.post('/signin', async (req, res, next) => {
+    let userInfo = req.body;
+
+    let user = await User.findOne({
+        where: {
+            userId: userInfo.userId
+        }
+    });
+
+    if (user == null) {
+        next('User not found');
+        return;
+    }
+
+    const salt = bcrypt.genSaltSync(1234);
+    const encryptedPassword = bcrypt.hashSync(userInfo.password, salt, null);
+
+    bcrypt.compare(encryptedPassword, user.password, function(err, result) {
+        if (result === true) {
+            req.session.userId = userInfo.userId;
+            req.session.name = userInfo.name;
+        } else {
+            res.send("Incorrect password");
+        }
+    });
+});
+
 module.exports = router;
