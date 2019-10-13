@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <p>This is footer.</p>
+    <div id="footer">
+        <p>Created By WARD</p>
     </div>
 </template>
 
@@ -11,5 +11,10 @@
 </script>
 
 <style scoped>
-
+#footer {
+    background-color: #42b983;
+    color: aliceblue;
+    font-size: 20px;
+    font-weight: bold;
+}
 </style>
