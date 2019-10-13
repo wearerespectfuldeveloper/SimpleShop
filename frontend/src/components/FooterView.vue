@@ -1,17 +1,17 @@
 <template>
-    <div id="footer">
+    <div class="footer">
         <p>Created By WARD</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "footer"
+        name: "footer-view"
     }
 </script>
 
 <style scoped>
-#footer {
+.footer {
     background-color: #42b983;
     color: aliceblue;
     font-size: 20px;

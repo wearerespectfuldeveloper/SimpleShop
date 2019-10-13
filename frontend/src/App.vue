@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    <Header id="header"></Header>
-    <router-view id="body"/>
-    <Footer id="footer"></Footer>
+    <header-view id="headerView"></header-view>
+    <router-view id="bodyView"/>
+    <footer-view id="footerView"></footer-view>
   </div>
 </template>
 
 <script>
   // @ is an alias to /src=
-  import Header from '@/components/header'
-  import Footer from '@/components/footer'
+  import HeaderView from '@/components/HeaderView'
+  import FooterView from '@/components/FooterView'
 
   export default {
     components: {
-      Header,
-      Footer
+      HeaderView,
+      FooterView
     }
   }
 
 </script>
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,21 +27,21 @@
   text-align: center;
   color: #2c3e50;
 }
-#header {
+#headerView {
   position: absolute;
   top: 0;
   width: 100%;
   height: 5%;
   background-color: aliceblue;
 }
-#body {
+#bodyView {
   position: absolute;
   top: 5%;
   width: 100%;
   height: 85%;
   background-color: white;
 }
-#footer {
+#footerView {
   position: absolute;
   top: 90%;
   width: 100%;
