@@ -11,8 +11,11 @@ const usersRouter = require('./routes/users');
 const auth = require('./routes/auth');
 const sequelize = require('./models').sequelize;
 
+const cors = require('cors');
 const app = express();
 sequelize.sync();
+
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
