@@ -43,17 +43,14 @@ router.post('/signin', async (req, res, next) => {
         return;
     }
 
-    const salt = bcrypt.genSaltSync(1234);
-    const encryptedPassword = bcrypt.hashSync(userInfo.password, salt, null);
-
-    bcrypt.compare(encryptedPassword, user.password, function(err, result) {
-        if (result === true) {
-            req.session.userId = userInfo.userId;
-            req.session.name = userInfo.name;
-        } else {
-            res.send("Incorrect password");
-        }
-    });
+    let isAuthenticated = bcrypt.compareSync(userInfo.password, user.password);
+    if (isAuthenticated) {
+        req.session.userId = userInfo.userId;
+        req.session.name = userInfo.name;
+        res.json("Authenticated");
+    } else {
+        res.json("Incorrect password");
+    }
 });
 
 module.exports = router;
