@@ -47,9 +47,9 @@ router.post('/signin', async (req, res, next) => {
     if (isAuthenticated) {
         req.session.userId = userInfo.userId;
         req.session.name = userInfo.name;
-        res.json("Authenticated");
+        res.status(200).json("Authenticated");
     } else {
-        res.json("Incorrect password");
+        res.status(500).json("Incorrect password");
     }
 });
 

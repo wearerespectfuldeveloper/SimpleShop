@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const passport = require('passport');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -10,10 +11,12 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const auth = require('./routes/auth');
 const sequelize = require('./models').sequelize;
+const passportConfig = require('./passport');
 
 const cors = require('cors');
 const app = express();
 sequelize.sync();
+passportConfig(passport);
 
 app.use(cors());
 
@@ -35,6 +38,8 @@ app.use(session({
     secure: false,
   }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
