@@ -13,7 +13,7 @@ module.exports = (passport) => {
             },
             async (req, userId, password, done) => {
                 try {
-                    const findUser = await User.find({where: {userId}});
+                    const findUser = await User.findOne({where: {userId}});
                     if (findUser) {
                         const result = bcrypt.compareSync(password, findUser.password);
 

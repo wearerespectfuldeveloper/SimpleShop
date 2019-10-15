@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models').User;
 const bcrypt = require('bcrypt-nodejs');
+const passport = require('passport');
 const router = express.Router();
 
 router.post('/signup', async (req, res, next) => {
@@ -30,27 +31,25 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.post('/signin', async (req, res, next) => {
-    let userInfo = req.body;
-
-    let user = await User.findOne({
-        where: {
-            userId: userInfo.userId
+    passport.authenticate('local', (authError, user, info) => {
+        if (authError) {
+            console.error(authError);
+            return next(authError);
         }
-    });
 
-    if (user == null) {
-        next('User not found');
-        return;
-    }
+        if (!user) {
+            return res.status(402).json('login fail');
+        }
 
-    let isAuthenticated = bcrypt.compareSync(userInfo.password, user.password);
-    if (isAuthenticated) {
-        req.session.userId = userInfo.userId;
-        req.session.name = userInfo.name;
-        res.status(200).json("Authenticated");
-    } else {
-        res.status(500).json("Incorrect password");
-    }
+        return req.login(user, (loginError) => {
+            if (loginError) {
+                console.error(loginError);
+                return next(loginError);
+            }
+
+            return res.status(200).json('success');
+        });
+    }) (req, res, next);
 });
 
 module.exports = router;
