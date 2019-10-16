@@ -38,7 +38,7 @@ router.post('/signin', async (req, res, next) => {
         }
 
         if (!user) {
-            return res.status(402).json('login fail');
+            return res.status(401).json('login fail');
         }
 
         return req.login(user, (loginError) => {
