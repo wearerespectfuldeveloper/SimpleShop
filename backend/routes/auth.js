@@ -47,7 +47,7 @@ router.post('/signin', async (req, res, next) => {
                 return next(loginError);
             }
 
-            return res.status(200).json('success');
+            return res.status(200).json(user);
         });
     }) (req, res, next);
 });

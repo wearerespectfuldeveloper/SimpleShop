@@ -18,7 +18,11 @@ module.exports = (passport) => {
                         const result = bcrypt.compareSync(password, findUser.password);
 
                         if (result) {
-                            done(null, findUser);
+                            let userSession = {};
+                            userSession.id = findUser.id;
+                            userSession.userId = findUser.userId;
+                            userSession.name = findUser.name;
+                            done(null, userSession);
                         } else {
                             done(null, false, {message: '비밀번호가 일치하지 않습니다.'});
                         }
