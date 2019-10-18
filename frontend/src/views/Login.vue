@@ -20,6 +20,7 @@
 
 <script>
     import axios from 'axios';
+    import {mapMutations} from 'vuex'
 
     export default {
         name: "Login",
@@ -30,12 +31,20 @@
             }
         },
         methods: {
+            ...mapMutations([
+                'login'
+            ]),
             tryLogin() {
-                axios.post('/auth/signin', {
-                    userId: this.id,
-                    password: this.pw
-                }).then(res => {
+                axios.post('/auth/signin',
+                    {
+                        userId: this.id,
+                        password: this.pw
+                    }
+                ).then(res => {
+                    this.$store.commit('login', res.data);
                     this.$router.push('/');
+                }).catch(err => {
+                    console.log(err);
                 });
             }
         }

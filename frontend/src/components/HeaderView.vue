@@ -1,13 +1,21 @@
 <template>
     <div>
         <router-link to="/" tag="button">Home</router-link>
-        <router-link to="/login" tag="button">로그인</router-link>
+        <router-link to="/login" tag="button" v-if="getName === null">Sign In</router-link>
+        <label v-else>{{getName}} 님 환영합니다!</label>
     </div>
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
+
     export default {
-        name: "header-view"
+        name: "header-view",
+        computed: {
+            ...mapGetters([
+                'getName'
+            ])
+        }
     }
 </script>
 
