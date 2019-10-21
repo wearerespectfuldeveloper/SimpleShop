@@ -8,8 +8,8 @@
 
 <script>
   // @ is an alias to /src=
-  import HeaderView from '@/components/HeaderView'
-  import FooterView from '@/components/FooterView'
+  import HeaderView from '@/views/HeaderView'
+  import FooterView from '@/views/FooterView'
 
   export default {
     components: {
