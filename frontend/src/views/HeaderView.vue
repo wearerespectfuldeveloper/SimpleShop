@@ -1,13 +1,14 @@
 <template>
     <div>
-        <router-link to="/" tag="button">Home</router-link>
+        <router-link to="/" tag="button" >Home</router-link>
         <router-link to="/login" tag="button" v-if="getName === null">Sign In</router-link>
-        <label v-else>{{getName}} 님 환영합니다!</label>
+        <greeting-user v-else></greeting-user>
     </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
+    import GreetingUser from "@/components/GreetingUser";
 
     export default {
         name: "header-view",
@@ -15,6 +16,9 @@
             ...mapGetters([
                 'getName'
             ])
+        },
+        components: {
+            GreetingUser
         }
     }
 </script>
