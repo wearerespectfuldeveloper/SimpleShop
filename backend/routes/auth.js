@@ -52,4 +52,10 @@ router.post('/signin', async (req, res, next) => {
     }) (req, res, next);
 });
 
+router.post('/logout', (req, res) => {
+    req.logout();
+    req.session.destroy();
+
+    return res.status(200).json("success");
+});
 module.exports = router;
