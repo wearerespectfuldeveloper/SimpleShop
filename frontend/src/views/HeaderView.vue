@@ -1,8 +1,7 @@
 <template>
     <div>
-        <router-link to="/" tag="button" >Home</router-link>
-        <router-link to="/login" tag="button" v-if="getName === null">Sign In</router-link>
-        <greeting-user v-else></greeting-user>
+        <router-link to="/" tag="button" class="home">Home</router-link>
+        <greeting-user class="userInfo"></greeting-user>
     </div>
 </template>
 
@@ -41,5 +40,13 @@
 
     button.router-link-exact-active {
         color: #42b983;
+    }
+
+    .home {
+        float: left;
+    }
+
+    .userInfo {
+        float: left;
     }
 </style>
