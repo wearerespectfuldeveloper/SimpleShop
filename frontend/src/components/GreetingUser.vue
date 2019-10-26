@@ -1,12 +1,13 @@
 <template>
     <div>
         <label>{{getName}} 님 환영합니다!</label>
-        <button @click.self.prevent="logout">Logout</button>
+        <button @click.self.prevent="tryLogout">Logout</button>
     </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
+    import {mapMutations} from 'vuex'
 
     export default {
         name: "GreetingUser",
@@ -16,8 +17,11 @@
             ])
         },
         methods: {
-            logout() {
-
+            ...mapMutations([
+                'logout'
+            ]),
+            tryLogout() {
+                this.$store.commit('logout');
                 this.$router.push('/');
             }
         }

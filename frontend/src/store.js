@@ -27,6 +27,11 @@ export default new Vuex.Store({
       state.user.id = payload.id;
       state.user.userId = payload.userId;
       state.user.name = payload.name;
+    },
+    logout(state) {
+      state.user.id = null;
+      state.user.userId = null;
+      state.user.name = null;
     }
   },
   actions: {
