@@ -14,7 +14,7 @@
                 <button @click.self.prevent="tryLogin">로그인</button>
             </div>
         </form>
-        <router-link to="/signin" tag="button">회원 가입</router-link>
+        <router-link to="/signup" tag="button">회원 가입</router-link>
     </div>
 </template>
 
