@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="getName === null">
-            <router-link to="/login" tag="button" >Sign In</router-link>
+            <router-link to="/login" tag="button">Sign In</router-link>
         </div>
         <div v-else>
             <label>{{getName}} 님 환영합니다!</label>
@@ -13,6 +13,7 @@
 <script>
     import {mapGetters} from 'vuex'
     import {mapMutations} from 'vuex'
+    import axios from 'axios'
 
     export default {
         name: "GreetingUser",
@@ -26,6 +27,14 @@
                 'logout'
             ]),
             tryLogout() {
+                axios.post('/auth/logout')
+                    .then(res => {
+                        console.log(res.data);
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+
                 this.$store.commit('logout');
                 this.$router.push('home').catch(err => {
                     console.log(err.message);
