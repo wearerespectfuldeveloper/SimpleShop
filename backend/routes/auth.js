@@ -15,7 +15,10 @@ router.post('/signup', async (req, res, next) => {
 
     if (user != null) {
         next('existing userId');
-        return;
+    } else if (userInfo.password_1 !== userInfo.password_2) {
+        next('password error');
+    } else {
+        userInfo.password = userInfo.password_1;
     }
 
     const salt = bcrypt.genSaltSync(1234);
