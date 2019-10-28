@@ -82,7 +82,7 @@
         watch: {
             userId: function (val) {
                 if (val !== '') {
-                    axios.post('/users/${val}/check')
+                    axios.post(`/users/${val}/check`)
                         .then(res => {
                             this.isAvailableId = true;
                             console.log(res.data);

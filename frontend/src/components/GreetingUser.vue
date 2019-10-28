@@ -36,7 +36,7 @@
                     });
 
                 this.$store.commit('logout');
-                this.$router.push('home').catch(err => {
+                this.$router.push('/').catch(err => {
                     console.log(err.message);
                 });
             }
